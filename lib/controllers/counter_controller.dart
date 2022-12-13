@@ -9,10 +9,6 @@
 import 'package:mvc_contado_flutter/models/model_counter.dart';
 
 class CounterController {
-  CounterController._();
-
-  static final instance = CounterController._();
-
   final ModelCounter _modelCounter = ModelCounter();
 
   ModelCounter get modelCounter => _modelCounter;
@@ -20,7 +16,7 @@ class CounterController {
   String get counter => _modelCounter.toString();
 
   void incrementCounter() {
-      print('add + 1');
+    print('add + 1');
     _modelCounter.setCounter(_modelCounter.counter + 1);
   }
 }

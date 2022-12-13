@@ -1,42 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:mvc_contado_flutter/controllers/counter_controller.dart';
+import 'package:mvc_contado_flutter/iu/providers/counte_provider.dart';
 import 'package:mvc_contado_flutter/iu/screens/my_home_page.dart';
+import 'package:provider/provider.dart';
 
-class DeletePreviousStatePage extends StatefulWidget {
+class DeletePreviousStatePage extends StatelessWidget {
   const DeletePreviousStatePage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<DeletePreviousStatePage> createState() =>
-      _DeletePreviousStatePageState();
-}
-
-class _DeletePreviousStatePageState extends State<DeletePreviousStatePage> {
-  final _counterController = CounterController.instance;
-  late String _counter;
-
-  @override
-  void initState() {
-    _counter = _counterController.counter;
-    super.initState();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      _counterController.incrementCounter();
-      _counter = _counterController.counter;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final counterProvider = Provider.of<CounterProvider>(context);
+    final _counter = counterProvider.counter;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Delete Previous State'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () => counterProvider.incrementCounter(),
         child: const Icon(Icons.add),
       ),
       body: Center(
@@ -51,7 +34,6 @@ class _DeletePreviousStatePageState extends State<DeletePreviousStatePage> {
                       MaterialPageRoute(
                           builder: (context) => MyHomePage(
                                 title: 'Volvimos desde el delete state',
-                                counterController: CounterController.instance,
                               )));
                 },
                 child: const Text('Volver')),

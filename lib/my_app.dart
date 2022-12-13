@@ -7,13 +7,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counterController = CounterController.instance;
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page', counterController: counterController,),
+      home: const MyHomePage(title: 'Flutter Demo Home Page', ),
     );
   }
 }
